@@ -27,4 +27,14 @@ public class Passenger {
         return  seatClass;
     }
 
+    @Override
+    public String toString() {
+        return "Passenger{" + "\n" +
+                "firstName ='" + firstName + '\n' +
+                ", lastName ='" + lastName + '\n' +
+                ", emailAddress ='" + emailAddress + '\n' +
+                ", seatNumber =" + seatNumber + "\n" +
+                ", seatClass =" + seatClass +
+                '}';
     }
+}
