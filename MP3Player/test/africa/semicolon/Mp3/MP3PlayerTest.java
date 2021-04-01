@@ -175,6 +175,15 @@ public class MP3PlayerTest {
     void mp3Player_canSetVolume(){
      myMp3Player.flipPowerButtons();
      Music music = new Music();
+     myMp3Player.download(music);
+     assertEquals(1, myMp3Player.getTotalNumberOfMusic());
+
+     myMp3Player.setVolume();
+     assertEquals(5, myMp3Player.getVolume());
+    }
+
+    @Test
+    void mp3Player_canIncreaseVolume(){
 
     }
 
