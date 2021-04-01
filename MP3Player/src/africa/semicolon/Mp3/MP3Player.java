@@ -10,6 +10,7 @@ public class MP3Player {
     private final ArrayList<Music> musicList = new ArrayList<>();
     private Music currentPlayingMusic;
     private MusicState currentMusicState = STOPPED;
+    private int volume = 5;
 
     public boolean isOn() {
         return isOn;
@@ -53,5 +54,16 @@ public class MP3Player {
 
     public void stop() {
         currentMusicState = STOPPED;
+    }
+
+    public void setVolume() {
+        if(isOn){
+            if(volume > 0 && volume <= 15)
+                this.volume = volume;
+        }
+    }
+
+    public int getVolume() {
+        return volume;
     }
 }
