@@ -27,10 +27,10 @@ public class ExerciseSevenPointOneOne {
 
     public void bestScores(int[] input2) {
         getIncrementedElements();
-        input2.
+//        input2.
     }
 
-    public int[] displayBestScores() {
-        return;
-    }
+//    public int[] displayBestScores() {
+//        return;
+//    }
 }
