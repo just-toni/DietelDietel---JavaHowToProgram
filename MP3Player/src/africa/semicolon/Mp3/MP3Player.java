@@ -11,6 +11,8 @@ public class MP3Player {
     private Music currentPlayingMusic;
     private MusicState currentMusicState = STOPPED;
     private int volume = 5;
+    private int volumeBeforeMute;
+    private boolean isMute;
 
     public boolean isOn() {
         return isOn;
@@ -52,6 +54,19 @@ public class MP3Player {
         currentMusicState = PAUSED;
     }
 
+    public void flipPlayAndPauseButtons() {
+        if(isOn){
+            if(currentMusicState == PLAYING){
+                currentMusicState = PAUSED;
+            }
+            else if (currentMusicState == PAUSED) {
+                currentMusicState = PLAYING;
+            }
+        }
+        else
+            currentMusicState = STOPPED;
+    }
+
     public void stop() {
         currentMusicState = STOPPED;
     }
@@ -65,5 +80,39 @@ public class MP3Player {
 
     public int getVolume() {
         return volume;
+    }
+
+    public void increaseVolume() {
+        if(isOn){
+            if(volume > 0 && volume < 15){
+                volume++;
+            }
+        }
+    }
+
+    public void decreaseVolume() {
+        if(isOn){
+            if(volume < 15 && volume >= 1){
+                volume--;
+            }
+        }
+    }
+
+
+    public void mute() {
+        if (isOn){
+            if(!isMute) {
+                volumeBeforeMute = getVolume();
+                volumeBeforeMute = 0;
+                isMute = true;
+            }
+            else
+                volumeBeforeMute = getVolume();
+            isMute = false;
+        }
+    }
+
+    public boolean isMute() {
+        return isMute;
     }
 }

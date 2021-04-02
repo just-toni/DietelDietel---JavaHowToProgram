@@ -143,7 +143,7 @@ public class MP3PlayerTest {
         assertEquals(1, myMp3Player.getTotalNumberOfMusic());
 
         myMp3Player.play(music);
-        assertEquals(PLAYING, myMp3Player.getMusicState()==PLAYING);
+        assertEquals(PLAYING, myMp3Player.getMusicState());
         assertEquals(music, myMp3Player.getCurrentlyPlayingMusic());
     }
 
@@ -154,8 +154,9 @@ public class MP3PlayerTest {
         myMp3Player.download(music2);
         assertEquals(1, myMp3Player.getTotalNumberOfMusic());
 
+        myMp3Player.play(music2);
         myMp3Player.pause();
-        assertEquals(PAUSED, myMp3Player.getMusicState()==PAUSED);
+        assertEquals(PAUSED, myMp3Player.getMusicState());
         assertEquals(music2, myMp3Player.getCurrentlyPlayingMusic());
     }
 
@@ -166,9 +167,84 @@ public class MP3PlayerTest {
         myMp3Player.download(music2);
         assertEquals(1, myMp3Player.getTotalNumberOfMusic());
 
+        myMp3Player.play(music2);
         myMp3Player.stop();
-        assertEquals(PAUSED, myMp3Player.getMusicState()==STOPPED);
+        assertEquals(STOPPED, myMp3Player.getMusicState());
         assertEquals(music2, myMp3Player.getCurrentlyPlayingMusic());
+    }
+
+    @Test
+    void mp3Player_cantPlayMusicWhenPlayerIsOff() {
+        assertFalse(myMp3Player.isOn());
+        Music music = new Music();
+        myMp3Player.download(music);
+        assertEquals(0, myMp3Player.getTotalNumberOfMusic());
+
+        myMp3Player.play(music);
+        assertEquals(PLAYING, myMp3Player.getMusicState());
+        assertEquals(music, myMp3Player.getCurrentlyPlayingMusic());
+    }
+
+    @Test
+    void mp3Player_cantPauseMusicPlayerIsOff() {
+        assertFalse(myMp3Player.isOn());
+        Music music2 = new Music();
+        myMp3Player.download(music2);
+        assertEquals(0, myMp3Player.getTotalNumberOfMusic());
+
+        myMp3Player.play(music2);
+        assertEquals(PLAYING, myMp3Player.getMusicState());
+        myMp3Player.pause();
+        assertEquals(PAUSED, myMp3Player.getMusicState());
+        assertEquals(music2, myMp3Player.getCurrentlyPlayingMusic());
+    }
+
+    @Test
+    void mp3Player_cantStopMusicWhenPlayerIsOff() {
+        assertFalse(myMp3Player.isOn());
+        Music music2 = new Music();
+        myMp3Player.download(music2);
+        assertEquals(0, myMp3Player.getTotalNumberOfMusic());
+
+        myMp3Player.stop();
+        assertEquals(STOPPED, myMp3Player.getMusicState());
+        assertNotEquals(music2, myMp3Player.getCurrentlyPlayingMusic());
+    }
+
+    @Test
+    void mp3Player_canPlayOrPauseMusicWhenPlayerIsOn(){
+        myMp3Player.flipPowerButtons();
+        Music music = new Music();
+        myMp3Player.download(music);
+        assertEquals(1, myMp3Player.getTotalNumberOfMusic());
+
+        myMp3Player.pause();
+        assertEquals(PAUSED,myMp3Player.getMusicState());
+        myMp3Player.flipPlayAndPauseButtons();
+        assertEquals(PLAYING,myMp3Player.getMusicState());
+
+        myMp3Player.play(music);
+        assertEquals(PLAYING,myMp3Player.getMusicState());
+        myMp3Player.flipPlayAndPauseButtons();
+        assertEquals(PAUSED,myMp3Player.getMusicState());
+    }
+
+    @Test
+    void mp3Player_cantPlayOrPauseMusicWhenPlayerIsOff(){
+        assertFalse(myMp3Player.isOn());
+        Music music = new Music();
+        myMp3Player.download(music);
+        assertEquals(0, myMp3Player.getTotalNumberOfMusic());
+
+//        myMp3Player.pause();
+//        assertEquals(STOPPED,myMp3Player.getMusicState());
+//        myMp3Player.flipPlayAndPauseButtons();
+//        assertEquals(STOPPED,myMp3Player.getMusicState());
+
+        myMp3Player.play(music);
+        assertEquals(STOPPED,myMp3Player.getMusicState());
+        myMp3Player.flipPlayAndPauseButtons();
+        assertEquals(STOPPED,myMp3Player.getMusicState());
     }
 
     @Test
@@ -183,8 +259,111 @@ public class MP3PlayerTest {
     }
 
     @Test
-    void mp3Player_canIncreaseVolume(){
+    void mp3Player_cantSetVolumeWhenPlayerIsOff(){
+        assertFalse(myMp3Player.isOn());
+        Music music = new Music();
+        myMp3Player.download(music);
+        assertEquals(0, myMp3Player.getTotalNumberOfMusic());
 
+        myMp3Player.setVolume();
+        assertEquals(5, myMp3Player.getVolume());
     }
 
+    @Test
+    void mp3Player_canIncreaseVolume(){
+        myMp3Player.flipPowerButtons();
+        Music music = new Music();
+        myMp3Player.download(music);
+        assertEquals(1, myMp3Player.getTotalNumberOfMusic());
+
+        myMp3Player.increaseVolume();
+        assertEquals(6, myMp3Player.getVolume());
+    }
+
+    @Test
+    void mp3Player_cantIncreaseVolumeWhenPlayerIsOff(){
+        assertFalse(myMp3Player.isOn());
+        Music music = new Music();
+        myMp3Player.download(music);
+        assertEquals(0, myMp3Player.getTotalNumberOfMusic());
+
+        myMp3Player.increaseVolume();
+        assertEquals(5, myMp3Player.getVolume());
+    }
+
+    @Test
+    void mp3Player_cantIncreaseVolumeMoreThanFifteen(){
+        myMp3Player.flipPowerButtons();
+        Music music = new Music();
+        myMp3Player.download(music);
+        assertEquals(1, myMp3Player.getTotalNumberOfMusic());
+
+        myMp3Player.increaseVolume();
+        myMp3Player.increaseVolume();
+        myMp3Player.increaseVolume();
+        myMp3Player.increaseVolume();
+        myMp3Player.increaseVolume();
+        myMp3Player.increaseVolume();
+        myMp3Player.increaseVolume();
+        myMp3Player.increaseVolume();
+        myMp3Player.increaseVolume();
+        myMp3Player.increaseVolume();
+        myMp3Player.increaseVolume();
+        assertEquals(15, myMp3Player.getVolume());
+    }
+
+
+
+    @Test
+    void mp3Player_canDecreaseVolume(){
+        myMp3Player.flipPowerButtons();
+        Music music = new Music();
+        myMp3Player.download(music);
+        assertEquals(1, myMp3Player.getTotalNumberOfMusic());
+
+        myMp3Player.decreaseVolume();
+        assertEquals(4, myMp3Player.getVolume());
+    }
+
+    @Test
+    void mp3Player_cantDecreaseVolumeWhenPlayerIsOff(){
+        assertFalse(myMp3Player.isOn());
+        Music music = new Music();
+        myMp3Player.download(music);
+        assertEquals(0, myMp3Player.getTotalNumberOfMusic());
+
+        myMp3Player.decreaseVolume();
+        assertEquals(5, myMp3Player.getVolume());
+    }
+
+    @Test
+    void mp3Player_cantDecreaseVolumeLessThanZero(){
+        myMp3Player.flipPowerButtons();
+        Music music = new Music();
+        myMp3Player.download(music);
+        assertEquals(1, myMp3Player.getTotalNumberOfMusic());
+
+        myMp3Player.decreaseVolume();
+        myMp3Player.decreaseVolume();
+        myMp3Player.decreaseVolume();
+        myMp3Player.decreaseVolume();
+        myMp3Player.decreaseVolume();
+        myMp3Player.decreaseVolume();
+        assertEquals(0, myMp3Player.getVolume());
+    }
+
+    @Test
+    void mp3Player_canMuteMusic(){
+        myMp3Player.flipPowerButtons();
+        Music music = new Music();
+        myMp3Player.download(music);
+        assertEquals(1, myMp3Player.getTotalNumberOfMusic());
+        myMp3Player.play(music);
+        assertEquals(PLAYING, myMp3Player.getMusicState());
+        assertEquals(5, myMp3Player.getVolume());
+
+        myMp3Player.mute();
+        assertTrue(myMp3Player.isMute());
+        assertEquals(0, myMp3Player.getVolume());
+    }
 }
