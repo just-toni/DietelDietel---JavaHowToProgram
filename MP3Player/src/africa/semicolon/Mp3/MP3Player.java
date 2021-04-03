@@ -98,21 +98,33 @@ public class MP3Player {
         }
     }
 
-
-    public void mute() {
+    public void muteAndUnmuteButton() {
         if (isOn){
             if(!isMute) {
-                volumeBeforeMute = getVolume();
-                volumeBeforeMute = 0;
+                volumeBeforeMute = volume;
+                volume = 0;
                 isMute = true;
             }
-            else
-                volumeBeforeMute = getVolume();
-            isMute = false;
+            else {
+                volume = volumeBeforeMute;
+                isMute = false;
+            }
         }
     }
 
     public boolean isMute() {
         return isMute;
+    }
+
+
+    public void playNextTrack() {
+        if(isOn){
+            for (int i = 0; i < musicList.size(); i++) {
+                if (musicList.get(i).equals(currentPlayingMusic)){
+                    currentPlayingMusic = musicList.get(i + 1);
+                    break;
+                }
+            }
+        }
     }
 }
