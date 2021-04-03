@@ -4,6 +4,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static africa.semicolon.Mp3.MusicState.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -381,10 +383,10 @@ public class MP3PlayerTest {
         assertEquals(5, myMp3Player.getVolume());
 
         myMp3Player.muteAndUnmuteButton();
-        assertEquals(0, myMp3Player.getVolume());
-        assertTrue(myMp3Player.isMute());
+        assertEquals(5, myMp3Player.getVolume());
+        assertFalse(myMp3Player.isMute());
         myMp3Player.muteAndUnmuteButton();
-        assertEquals(0,myMp3Player.getVolume());
+        assertEquals(5,myMp3Player.getVolume());
         assertFalse(myMp3Player.isMute());
     }
 
@@ -438,8 +440,6 @@ public class MP3PlayerTest {
         assertEquals(music3, myMp3Player.getCurrentlyPlayingMusic());
         myMp3Player.playPreviousTrack();
         assertEquals(music2, myMp3Player.getCurrentlyPlayingMusic());
-//        myMp3Player.playPreviousTrack();
-//        assertEquals(music2, myMp3Player.getCurrentlyPlayingMusic());
     }
 
     @Test
@@ -496,6 +496,89 @@ public class MP3PlayerTest {
 
     @Test
     void mp3Player_canCreatePlaylist(){
+        myMp3Player.flipPowerButtons();
+        ArrayList<Music> playlist = new ArrayList<>();
+        myMp3Player.createPlaylist(playlist);
+        assertEquals(1, myMp3Player.getTotalNumberOfPlaylists());
+    }
 
+    @Test
+    void mp3Player_canAddMusicToPlaylist(){
+        myMp3Player.flipPowerButtons();
+        ArrayList<Music> playlist = new ArrayList<>();
+        Music music1 = new Music();
+        Music music2 = new Music();
+
+        myMp3Player.createPlaylist(playlist);
+        myMp3Player.addMusicToPlaylist(music1, playlist);
+        myMp3Player.addMusicToPlaylist(music2, playlist);
+        assertEquals(2, myMp3Player.getNumberOfSongsInPlaylist(playlist));
+    }
+
+    @Test
+    void mpPlayer_canRemoveMusicFromPlaylist() {
+        myMp3Player.flipPowerButtons();
+        ArrayList<Music> playlist = new ArrayList<>();
+        Music music1 = new Music();
+        Music music2 = new Music();
+
+        myMp3Player.createPlaylist(playlist);
+        myMp3Player.addMusicToPlaylist(music1, playlist);
+        myMp3Player.addMusicToPlaylist(music2, playlist);
+        assertEquals(2, myMp3Player.getNumberOfSongsInPlaylist(playlist));
+
+        myMp3Player.removeMusicFromPlaylist(music2, playlist);
+        assertEquals(1, myMp3Player.getNumberOfSongsInPlaylist(playlist));
+    }
+
+    @Test
+    void mp3Player_canRepeatASong(){
+        myMp3Player.flipPowerButtons();
+        Music music = new Music();
+        myMp3Player.download(music);
+        assertEquals(1, myMp3Player.getTotalNumberOfMusic());
+
+        myMp3Player.repeatMusic();
+        assertEquals(music, myMp3Player.getCurrentlyPlayingMusic());
+    }
+
+    @Test
+    void mp3Player_canRepeatPlaylist(){
+        myMp3Player.flipPowerButtons();
+        Music music = new Music();
+        ArrayList<Music> mix = new ArrayList<>();
+        myMp3Player.createPlaylist(mix);
+        myMp3Player.addMusicToPlaylist(music, mix);
+        assertEquals(1, myMp3Player.getNumberOfSongsInPlaylist(mix));
+        assertEquals(1, myMp3Player.getTotalNumberOfPlaylists());
+
+        myMp3Player.repeatPlaylist();
+        assertEquals(mix, myMp3Player.getCurrentlyPlayingPlaylist());
+    }
+
+    @Test
+    void mp3Player_canShuffleSongsInPlaylist(){
+        myMp3Player.flipPowerButtons();
+        Music music = new Music();
+        Music music1 = new Music();
+        Music music2 = new Music();
+        Music music3 = new Music();
+        myMp3Player.download(music);
+        myMp3Player.download(music1);
+        myMp3Player.download(music2);
+        myMp3Player.download(music3);
+        assertEquals(4, myMp3Player.getTotalNumberOfMusic());
+
+        ArrayList<Music> mix = new ArrayList<>();
+        myMp3Player.createPlaylist(mix);
+        myMp3Player.addMusicToPlaylist(music, mix);
+        myMp3Player.addMusicToPlaylist(music1, mix);
+        myMp3Player.addMusicToPlaylist(music2, mix);
+        myMp3Player.addMusicToPlaylist(music3, mix);
+        assertEquals(4, myMp3Player.getNumberOfSongsInPlaylist(mix));
+        assertEquals(1, myMp3Player.getTotalNumberOfPlaylists());
+
+        myMp3Player.shuffleSongsInPlaylist();
+        assertEquals(music, myMp3Player.getCurrentlyPlayingMusic());
     }
 }
