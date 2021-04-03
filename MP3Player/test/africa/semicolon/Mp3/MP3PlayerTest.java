@@ -181,8 +181,8 @@ public class MP3PlayerTest {
         assertEquals(0, myMp3Player.getTotalNumberOfMusic());
 
         myMp3Player.play(music);
-        assertEquals(PLAYING, myMp3Player.getMusicState());
-        assertEquals(music, myMp3Player.getCurrentlyPlayingMusic());
+        assertEquals(STOPPED, myMp3Player.getMusicState());
+        assertEquals(null, myMp3Player.getCurrentlyPlayingMusic());
     }
 
     @Test
@@ -193,10 +193,10 @@ public class MP3PlayerTest {
         assertEquals(0, myMp3Player.getTotalNumberOfMusic());
 
         myMp3Player.play(music2);
-        assertEquals(PLAYING, myMp3Player.getMusicState());
+        assertEquals(STOPPED, myMp3Player.getMusicState());
         myMp3Player.pause();
         assertEquals(PAUSED, myMp3Player.getMusicState());
-        assertEquals(music2, myMp3Player.getCurrentlyPlayingMusic());
+        assertEquals(null, myMp3Player.getCurrentlyPlayingMusic());
     }
 
     @Test
@@ -377,7 +377,7 @@ public class MP3PlayerTest {
         myMp3Player.download(music);
         assertEquals(0, myMp3Player.getTotalNumberOfMusic());
         myMp3Player.play(music);
-        assertEquals(PLAYING, myMp3Player.getMusicState());
+        assertEquals(STOPPED, myMp3Player.getMusicState());
         assertEquals(5, myMp3Player.getVolume());
 
         myMp3Player.muteAndUnmuteButton();
@@ -402,6 +402,8 @@ public class MP3PlayerTest {
         assertEquals(music, myMp3Player.getCurrentlyPlayingMusic());
         myMp3Player.playNextTrack();
         assertEquals(music2, myMp3Player.getCurrentlyPlayingMusic());
+        myMp3Player.playNextTrack();
+        assertEquals(music, myMp3Player.getCurrentlyPlayingMusic());
     }
 
     @Test
@@ -415,8 +417,85 @@ public class MP3PlayerTest {
 
         myMp3Player.play(music);
         assertEquals(STOPPED, myMp3Player.getMusicState());
-        assertEquals(music, myMp3Player.getCurrentlyPlayingMusic());
+        assertEquals(null, myMp3Player.getCurrentlyPlayingMusic());
         myMp3Player.playNextTrack();
+        assertEquals(null, myMp3Player.getCurrentlyPlayingMusic());
+    }
+
+    @Test
+    void mp3Player_canPlayPreviousTrack(){
+        myMp3Player.flipPowerButtons();
+        Music music = new Music();
+        myMp3Player.download(music);
+        Music music2 = new Music();
+        myMp3Player.download(music2);
+        Music music3 = new Music();
+        myMp3Player.download(music3);
+        assertEquals(3, myMp3Player.getTotalNumberOfMusic());
+
+        myMp3Player.play(music3);
+        assertEquals(PLAYING, myMp3Player.getMusicState());
+        assertEquals(music3, myMp3Player.getCurrentlyPlayingMusic());
+        myMp3Player.playPreviousTrack();
         assertEquals(music2, myMp3Player.getCurrentlyPlayingMusic());
+//        myMp3Player.playPreviousTrack();
+//        assertEquals(music2, myMp3Player.getCurrentlyPlayingMusic());
+    }
+
+    @Test
+    void mp3Player_cantPlayPreviousTrackWhenPlayerIsOff(){
+        assertFalse(myMp3Player.isOn());
+        Music music = new Music();
+        myMp3Player.download(music);
+        Music music2 = new Music();
+        myMp3Player.download(music2);
+        assertEquals(0, myMp3Player.getTotalNumberOfMusic());
+
+        myMp3Player.play(music2);
+        assertEquals(STOPPED, myMp3Player.getMusicState());
+        assertEquals(null, myMp3Player.getCurrentlyPlayingMusic());
+        myMp3Player.playPreviousTrack();
+        assertEquals(null, myMp3Player.getCurrentlyPlayingMusic());
+    }
+
+    @Test
+    void mp3Player_canSkipMusic(){
+        myMp3Player.flipPowerButtons();
+        Music music = new Music();
+        myMp3Player.download(music);
+        Music music2 = new Music();
+        myMp3Player.download(music2);
+        Music music3 = new Music();
+        myMp3Player.download(music3);
+        assertEquals(3, myMp3Player.getTotalNumberOfMusic());
+
+        myMp3Player.play(music);
+        assertEquals(PLAYING, myMp3Player.getMusicState());
+        assertEquals(music, myMp3Player.getCurrentlyPlayingMusic());
+        myMp3Player.skipTrack();
+        assertEquals(music3, myMp3Player.getCurrentlyPlayingMusic());
+    }
+
+    @Test
+    void mp3Player_cantSkipTrackWhenPlayerIsOff(){
+        assertFalse(myMp3Player.isOn());
+        Music music = new Music();
+        myMp3Player.download(music);
+        Music music2 = new Music();
+        myMp3Player.download(music2);
+        Music music3 = new Music();
+        myMp3Player.download(music3);
+        assertEquals(0, myMp3Player.getTotalNumberOfMusic());
+
+        myMp3Player.play(music);
+        assertEquals(STOPPED, myMp3Player.getMusicState());
+        assertEquals(null, myMp3Player.getCurrentlyPlayingMusic());
+        myMp3Player.skipTrack();
+        assertEquals(null, myMp3Player.getCurrentlyPlayingMusic());
+    }
+
+    @Test
+    void mp3Player_canCreatePlaylist(){
+
     }
 }
