@@ -1,6 +1,9 @@
 package africa.semicolon.Mp3;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
 
 import static africa.semicolon.Mp3.MusicState.*;
 
@@ -13,6 +16,9 @@ public class MP3Player {
     private int volume = 5;
     private int volumeBeforeMute;
     private boolean isMute;
+    private final ArrayList<ArrayList<Music>> playlists = new ArrayList<ArrayList<Music>>();
+    private ArrayList<Music> currentPlayingPlaylist;
+    private SecureRandom secureRandom;
 
     public boolean isOn() {
         return isOn;
@@ -134,14 +140,26 @@ public class MP3Player {
 
     public void playPreviousTrack() {
         if(isOn){
-            for (int i = 0; i < musicList.size(); i++) {
-                if (musicList.get(i).equals(currentPlayingMusic)){
-                    currentPlayingMusic = musicList.get(i - 1);
+//            for (int i = 0; i < musicList.size(); i++) {
+//                if (musicList.get(i).equals(currentPlayingMusic)){
+//                    currentPlayingMusic = musicList.get(i - 1);
+//                }
+//                else if(currentPlayingMusic == musicList.get(0)){
+//                    currentPlayingMusic = musicList.get(musicList.size() - 1);
+//                }
+//                break;
+//            }
+            if (isOn) {
+                for (int i = 0; i < musicList.size(); i++) {
+                    if (musicList.get(i) == currentPlayingMusic) {
+                        if (i == 0) {
+                            currentPlayingMusic = musicList.get(musicList.size() - 1);
+                        } else {
+                            currentPlayingMusic = musicList.get(i - 1);
+                        }
+                        break;
+                    }
                 }
-                else if(currentPlayingMusic == musicList.get(0)){
-                    currentPlayingMusic = musicList.get(musicList.size() - 1);
-                }
-                break;
             }
         }
     }
@@ -157,6 +175,75 @@ public class MP3Player {
                     currentPlayingMusic = musicList.get(1);
                 }
                 break;
+            }
+        }
+    }
+
+    public void createPlaylist(ArrayList<Music> playlistName) {
+        if(isOn){
+            playlists.add(playlistName);
+        }
+    }
+
+    public int getTotalNumberOfPlaylists() {
+        return playlists.size();
+    }
+
+    public void addMusicToPlaylist(Music musicName, ArrayList<Music> playlist) {
+        if(isOn){
+            for(ArrayList<Music> songs : playlists){
+                if(songs.equals(playlist)){
+                    songs.add(musicName);
+                }
+            }
+        }
+    }
+
+    public int getNumberOfSongsInPlaylist(ArrayList<Music> playlist) {
+        int playlistSong = 0;
+        for (int i = 0; i < playlists.size(); i++) {
+            if(playlists.get(i) == playlist){
+                playlistSong = playlists.get(i).size();
+            }
+        }
+        return playlistSong;
+    }
+
+    public void removeMusicFromPlaylist(Music musicName, ArrayList<Music> playlist) {
+        if(isOn){
+            for(ArrayList<Music> songs : playlists){
+                if(songs.equals(playlist)){
+                    songs.remove(musicName);
+                }
+            }
+        }
+    }
+
+    public void repeatMusic() {
+        if(isOn){
+            for (int i = 0; i < musicList.size(); i++) {
+                currentPlayingMusic = musicList.get(i);
+            }
+        }
+    }
+
+    public void repeatPlaylist() {
+        if(isOn){
+            for (int i = 0; i < playlists.size(); i++) {
+                currentPlayingPlaylist = playlists.get(i);
+            }
+        }
+    }
+
+    public ArrayList<Music> getCurrentlyPlayingPlaylist() {
+        return currentPlayingPlaylist;
+    }
+
+    public void shuffleSongsInPlaylist() {
+        if(isOn){
+            for (int i = 0; i < playlists.size(); i++) {
+//                currentPlayingPlaylist = secureRandom.nextInt(playlists.size());
+                Collections.shuffle(playlists);
             }
         }
     }
