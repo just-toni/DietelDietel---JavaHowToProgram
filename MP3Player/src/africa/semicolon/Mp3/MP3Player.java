@@ -37,8 +37,10 @@ public class MP3Player {
     }
 
     public void play(Music music) {
-        currentPlayingMusic = music;
-        currentMusicState = PLAYING;
+        if (isOn) {
+            currentPlayingMusic = music;
+            currentMusicState = PLAYING;
+        }
     }
 
     public Music getCurrentlyPlayingMusic(){
@@ -50,7 +52,6 @@ public class MP3Player {
     }
 
     public void pause() {
-//        currentPlayingMusic = music2;
         currentMusicState = PAUSED;
     }
 
@@ -122,8 +123,40 @@ public class MP3Player {
             for (int i = 0; i < musicList.size(); i++) {
                 if (musicList.get(i).equals(currentPlayingMusic)){
                     currentPlayingMusic = musicList.get(i + 1);
-                    break;
                 }
+                else if(currentPlayingMusic == musicList.get(musicList.size() - 1)){
+                    currentPlayingMusic = musicList.get(0);
+                }
+                break;
+            }
+        }
+    }
+
+    public void playPreviousTrack() {
+        if(isOn){
+            for (int i = 0; i < musicList.size(); i++) {
+                if (musicList.get(i).equals(currentPlayingMusic)){
+                    currentPlayingMusic = musicList.get(i - 1);
+                }
+                else if(currentPlayingMusic == musicList.get(0)){
+                    currentPlayingMusic = musicList.get(musicList.size() - 1);
+                }
+                break;
+            }
+        }
+    }
+
+
+    public void skipTrack() {
+        if(isOn){
+            for (int i = 0; i < musicList.size(); i++) {
+                if (musicList.get(i).equals(currentPlayingMusic)){
+                    currentPlayingMusic = musicList.get(i + 2);
+                }
+                else if(currentPlayingMusic == musicList.get(musicList.size() - 1)){
+                    currentPlayingMusic = musicList.get(1);
+                }
+                break;
             }
         }
     }
