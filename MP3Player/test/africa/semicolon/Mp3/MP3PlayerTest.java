@@ -579,6 +579,11 @@ public class MP3PlayerTest {
         assertEquals(1, myMp3Player.getTotalNumberOfPlaylists());
 
         myMp3Player.shuffleSongsInPlaylist();
-        assertEquals(music, myMp3Player.getCurrentlyPlayingMusic());
+        assertEquals(music, myMp3Player.getShuffledSong());
+    }
+
+    @Test
+    void mp3Player_canRewindMusic(){
+
     }
 }
