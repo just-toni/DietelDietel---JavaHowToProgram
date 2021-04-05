@@ -242,9 +242,13 @@ public class MP3Player {
     public void shuffleSongsInPlaylist() {
         if(isOn){
             for (int i = 0; i < playlists.size(); i++) {
-//                currentPlayingPlaylist = secureRandom.nextInt(playlists.size());
-                Collections.shuffle(playlists);
+                secureRandom.nextInt(playlists.indexOf(i));
+//                Collections.shuffle(playlists);
             }
         }
+    }
+
+    public Music getShuffledSong() {
+        return null;
     }
 }
