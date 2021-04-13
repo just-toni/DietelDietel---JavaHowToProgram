@@ -7,22 +7,37 @@ public class DeckOfCards {
     private Card [] deckOfCards = new Card[52];
 
     public void generateCardDeck() {
-        for (int i = 0; i < faces.length; i++) {
-            for (int j = 0; j < suits.length; j++) {
-                Card card = new Card(faces[i], suits[j]);
-                System.out.println(card);
+        for (int k = 0; k < deckOfCards.length; k++) {
+            for (int i = 0; i < faces.length; i++) {
+                for (int j = 0; j < suits.length; j++) {
+                    Card card = new Card(faces[i], suits[j]);
+                    deckOfCards[k] = card;
+                    System.out.println(card);
+                }
             }
         }
     }
 
-}
+//    deck = new Card[NUMBER_OF_CARDS];
+//
+//    int counter = 0;
+//        for (int i = 0; i < suits.length; i++) {
+//        for (int j = 0; j < faces.length; j++) {
+//            deck[counter] = new Card(faces[j], suits[i]);
+//            counter++;
+//            System.out.println(deck[counter]);
+//        }
+//        System.out.println();
+//    }
 
-//for (int k = 0; k < deckOfCards.length; k++) {
-//            for (int i = 0; i < faces.length; i++) {
-//                for (int j = 0; j < suits.length; j++) {
-//                    Card card = new Card(faces[i], suits[j]);
-//                    deckOfCards[k] = card;
-//                    System.out.println(deckOfCards[k]);
-//                }
+//        for (int i = 0; i < faces.length; i++) {
+//            for (int j = 0; j < suits.length; j++) {
+//                Card card = new Card(faces[i], suits[j]);
+//                System.out.println(card);
 //            }
 //        }
+
+
+}
+
+
