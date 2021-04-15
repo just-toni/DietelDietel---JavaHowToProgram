@@ -22,6 +22,7 @@ class CardTest {
     @Test
     void deckOfCardsCanBeGenerated_test(){
         deck.generateCardDeck();
-//        assertEquals(0, deck.getCardDeck());
+        DeckOfCards deckOfCards = new DeckOfCards();
+        System.out.println(deckOfCards.toString());
     }
 }
