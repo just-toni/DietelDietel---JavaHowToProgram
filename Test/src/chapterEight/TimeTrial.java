@@ -6,7 +6,7 @@ public class TimeTrial {
     private int second;
 
     public void setHour(int hour) {
-        boolean isValidHour = hour > 0 && hour <= 24;
+        boolean isValidHour = hour > 0 && hour < 24;
         if(isValidHour){
             this.hour = hour;
         }
@@ -19,7 +19,7 @@ public class TimeTrial {
     }
 
     public void setMinute(int minute) {
-        boolean isValidMinute = minute > 0 && minute <= 60;
+        boolean isValidMinute = minute > 0 && minute < 60;
         if(isValidMinute){
             this.minute = minute;
         }
@@ -32,7 +32,7 @@ public class TimeTrial {
     }
 
     public void setSeconds(int second) {
-        boolean isSecondValid = second > 0 && second <= 60;
+        boolean isSecondValid = second > 0 && second < 60;
         if(isSecondValid){
             this.second = second;
         }
