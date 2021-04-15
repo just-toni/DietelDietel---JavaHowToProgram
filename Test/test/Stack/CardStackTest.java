@@ -1,30 +1,34 @@
-//package Stack;
-//
-//import org.junit.jupiter.api.AfterEach;
-//import org.junit.jupiter.api.BeforeEach;
-//import org.junit.jupiter.api.Test;
-//
-//import static org.junit.jupiter.api.Assertions.*;
-//
-//class CardStackTest {
-//    CardStack stack;
-//
-//    @BeforeEach
-//    void setUp() {
-//        stack = new CardStack(52);
-//    }
-//
-//    @AfterEach
-//    void tearDown() {
-//        stack = null;
-//    }
-//
-//  @Test
-//    void pushOneElement_test(){
-//        stack.push(2);
-//        assertEquals(2, stack.peek());
-//  }
-//
+package Stack;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class CardStackTest {
+    CardStack stack;
+    Card card;
+
+    @BeforeEach
+    void setUp() {
+        stack = new CardStack(52);
+        card = new Card("Ace", "Spades");
+    }
+
+    @AfterEach
+    void tearDown() {
+        stack = null;
+        card = null;
+    }
+
+  @Test
+    void pushOneElement_test(){
+        stack.push(card);
+      System.out.println(card);
+        assertEquals(card, stack.peek());
+  }
+
 //  @Test
 //    void pushTwoElement_test(){
 //        stack.push(2);
@@ -98,4 +102,4 @@
 //        assertTrue(stack.isEmpty());
 //        assertThrows(IllegalArgumentException.class, ()-> stack.pop());
 //    }
-//}
+}
