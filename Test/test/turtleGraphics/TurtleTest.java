@@ -217,6 +217,7 @@ public class TurtleTest {
 
     @Test
     void turtleCanWriteWhileFacingEastTest(){
+        assertSame(EAST, turtle.getCurrentDirection());
         turtle.movePenDown();
         Sketchpad sketchpad = new Sketchpad(20, 20);
         int numberOfSteps = 5;
@@ -230,6 +231,119 @@ public class TurtleTest {
         assertEquals(new Position(0, 4), turtle.getCurrentPosition());
     }
 
+    @Test
+    void turtleCanWriteWhileFacingSouthTest(){
+        assertSame(EAST, turtle.getCurrentDirection());
+        turtle.movePenDown();
+        Sketchpad sketchpad = new Sketchpad(20, 20);
+        int numberOfSteps = 5;
+        turtle.writeOn(sketchpad, numberOfSteps);
+        int counter = 0;
+        var floor = sketchpad.getFloor()[0][counter]; // int [][] floor = sketchpad.getFloor()
+        while(counter < numberOfSteps){
+            assertEquals(1, floor);
+            counter++;
+        }
+        assertEquals(new Position(0, 4), turtle.getCurrentPosition());
+        turtle.turnRight();
+        assertSame(SOUTH, turtle.getCurrentDirection());
+        turtle.movePenDown();
+        turtle.writeOn(sketchpad, numberOfSteps);
+        counter = 0;
+        floor = sketchpad.getFloor()[counter][4]; // int [][] floor = sketchpad.getFloor()
+        while(counter < numberOfSteps){
+            assertEquals(1, floor);
+            counter++;
+        }
+        assertEquals(new Position(4, 4), turtle.getCurrentPosition());
+    }
+
+    @Test
+    void turtleCanWriteWhileFacingWestTest(){
+        assertSame(EAST, turtle.getCurrentDirection());
+        turtle.movePenDown();
+        Sketchpad sketchpad = new Sketchpad(20, 20);
+        int numberOfSteps = 5;
+        turtle.writeOn(sketchpad, numberOfSteps);
+        int counter = 0;
+        var floor = sketchpad.getFloor()[0][counter]; // int [][] floor = sketchpad.getFloor()
+        while(counter < numberOfSteps){
+            assertEquals(1, floor);
+            counter++;
+        }
+        assertEquals(new Position(0, 4), turtle.getCurrentPosition());
+        turtle.turnRight();
+        assertSame(SOUTH, turtle.getCurrentDirection());
+        turtle.movePenDown();
+        turtle.writeOn(sketchpad, numberOfSteps);
+        counter = 0;
+        floor = sketchpad.getFloor()[counter][4]; // int [][] floor = sketchpad.getFloor()
+        while(counter < numberOfSteps){
+            assertEquals(1, floor);
+            counter++;
+        }
+        assertEquals(new Position(4, 4), turtle.getCurrentPosition());
+        turtle.turnRight();
+        assertSame(WEST, turtle.getCurrentDirection());
+        turtle.movePenDown();
+        turtle.writeOn(sketchpad, numberOfSteps);
+        counter = 0;
+        floor = sketchpad.getFloor()[4][counter]; // int [][] floor = sketchpad.getFloor()
+        while(counter < numberOfSteps){
+            assertEquals(1, floor);
+            counter++;
+        }
+        assertEquals(new Position(4,0), turtle.getCurrentPosition());
+    }
+
+    @Test
+    void turtleCanWriteWhileFacingNorthTest(){
+        assertSame(EAST, turtle.getCurrentDirection());
+        turtle.movePenDown();
+        Sketchpad sketchpad = new Sketchpad(20, 20);
+        int numberOfSteps = 5;
+        turtle.writeOn(sketchpad, numberOfSteps);
+        int counter = 0;
+        var floor = sketchpad.getFloor()[0][counter]; // int [][] floor = sketchpad.getFloor()
+        while(counter < numberOfSteps){
+            assertEquals(1, floor);
+            counter++;
+        }
+        assertEquals(new Position(0, 4), turtle.getCurrentPosition());
+        turtle.turnRight();
+        assertSame(SOUTH, turtle.getCurrentDirection());
+        turtle.movePenDown();
+        turtle.writeOn(sketchpad, numberOfSteps);
+        counter = 0;
+        floor = sketchpad.getFloor()[counter][4]; // int [][] floor = sketchpad.getFloor()
+        while(counter < numberOfSteps){
+            assertEquals(1, floor);
+            counter++;
+        }
+        assertEquals(new Position(4, 4), turtle.getCurrentPosition());
+        turtle.turnRight();
+        assertSame(WEST, turtle.getCurrentDirection());
+        turtle.movePenDown();
+        turtle.writeOn(sketchpad, numberOfSteps);
+        counter = 0;
+        floor = sketchpad.getFloor()[4][counter]; // int [][] floor = sketchpad.getFloor()
+        while(counter < numberOfSteps){
+            assertEquals(1, floor);
+            counter++;
+        }
+        assertEquals(new Position(4,0), turtle.getCurrentPosition());
+        turtle.turnRight();
+        assertSame(NORTH, turtle.getCurrentDirection());
+        turtle.movePenDown();
+        turtle.writeOn(sketchpad, numberOfSteps);
+        counter = 0;
+        floor = sketchpad.getFloor()[counter][0]; // int [][] floor = sketchpad.getFloor()
+        while(counter < numberOfSteps){
+            assertEquals(1, floor);
+            counter++;
+        }
+        assertEquals(new Position(0,0), turtle.getCurrentPosition());
+    }
 //    @Test
 //    void turtleCanMoveDownwardsFacingSouth(){
 //        assertSame(EAST, turtle.getCurrentDirection());
