@@ -80,7 +80,22 @@ public class Turtle {
 //                        sketchpad.getFloor()[rowPosition][columnPosition + counter] = 1;
                         floor[rowPosition][columnPosition + counter] = 1;
                     }
-
+                }
+                case SOUTH -> {
+                    var floor = sketchpad.getFloor();
+                    int rowPosition = currentPosition.getRowPosition();
+                    int columnPosition = currentPosition.getColumnPosition();
+                    for (int counter = 0; counter < numberOfSteps; counter++){
+                        floor[rowPosition + counter][columnPosition] = 1;
+                    }
+                }
+                case WEST -> {
+                    var floor = sketchpad.getFloor();
+                    int rowPosition = currentPosition.getRowPosition();
+                    int columnPosition = currentPosition.getColumnPosition();
+                    for (int counter = 0; counter < numberOfSteps; counter++) {
+                        floor[rowPosition][columnPosition - counter] = 1;
+                    }
                 }
             }
         }
