@@ -47,8 +47,12 @@ public class Turtle {
     }
 
     public void moveForwardBy(int numberOfSteps) {
-        if (currentDirection == EAST) {
-            currentPosition.increaseColumnPositionBy(numberOfSteps);
+        numberOfSteps -= 1;
+        switch (currentDirection){
+            case EAST -> currentPosition.increaseColumnPositionBy(numberOfSteps);
+            case SOUTH -> currentPosition.increaseRowPositionBy(numberOfSteps);
+            case WEST -> currentPosition.decreaseColumnPositionBy(numberOfSteps);
+            case NORTH -> currentPosition.decreaseRowPositionBy(numberOfSteps);
         }
     }
 
@@ -65,22 +69,40 @@ public class Turtle {
         }
     }
 
-    public void moveDownwardsBy(int numberOfSteps) {
-        if(currentDirection == SOUTH){
-            currentPosition.increaseRowPositionBy(numberOfSteps);
+    public void writeOn(Sketchpad sketchpad, int numberOfSteps) {
+        if(!isPenUp()){
+            switch (currentDirection){
+                case EAST -> {
+                    var floor = sketchpad.getFloor();
+                    int rowPosition = currentPosition.getRowPosition();
+                    int columnPosition = currentPosition.getColumnPosition();
+                    for (int counter = 0; counter < numberOfSteps; counter++) {
+//                        sketchpad.getFloor()[rowPosition][columnPosition + counter] = 1;
+                        floor[rowPosition][columnPosition + counter] = 1;
+                    }
+
+                }
+            }
         }
+        moveForwardBy(numberOfSteps);
     }
 
-    public void moveBackwardsBy(int numberOfSteps) {
-        if(currentDirection == WEST){
-            currentPosition.decreaseColumnPositionBy(numberOfSteps);
-        }
-    }
-
-    public void moveUpwardsBy(int numberOfSteps) {
-        if(currentDirection == NORTH){
-            currentPosition.decreaseRowPositionBy(numberOfSteps);
-        }
-    }
+//    public void moveDownwardsBy(int numberOfSteps) {
+//        if(currentDirection == SOUTH){
+//            currentPosition.increaseRowPositionBy(numberOfSteps);
+//        }
+//    }
+//
+//    public void moveBackwardsBy(int numberOfSteps) {
+//        if(currentDirection == WEST){
+//            currentPosition.decreaseColumnPositionBy(numberOfSteps);
+//        }
+//    }
+//
+//    public void moveUpwardsBy(int numberOfSteps) {
+//        if(currentDirection == NORTH){
+//            currentPosition.decreaseRowPositionBy(numberOfSteps);
+//        }
+//    }
 }
 
