@@ -21,12 +21,12 @@ class RandomSentencesTest {
 
     @Test
     void testToRandomiseWordsIntoSentences(){
-        String [] verb = {"drove", "jumped", "ran", "walked", "skipped"};
-        String [] noun = {"boy", "girl", "dog", "town", "car"};
-        String [] article = {"the", "a", "one", "some", "any"};
-        String [] preposition = {"to", "from", "over", "under", "on"};
-
-        StringBuilder stringBuilder = new StringBuilder();
+//        String [] verb = {"drove", "jumped", "ran", "walked", "skipped"};
+//        String [] noun = {"boy", "girl", "dog", "town", "car"};
+//        String [] article = {"the", "a", "one", "some", "any"};
+//        String [] preposition = {"to", "from", "over", "under", "on"};
+//
+//        StringBuilder stringBuilder = new StringBuilder();
         randomSentences.randomizingWords();
     }
 }
