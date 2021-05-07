@@ -41,8 +41,30 @@ class QueueTest {
         queue.enqueue(3);
         queue.enqueue(6);
         queue.enqueue(7);
+        queue.enqueue(89);
         queue.dequeue();
-        assertEquals(7, queue.peekLast());
-        assertEquals(6, queue.peekFirst());
+        queue.dequeue();
+        assertEquals(89, queue.peekLast());
+        assertEquals(7 , queue.peekFirst());
+    }
+
+    @Test
+    void findTotalNumberOfElements(){
+        queue.enqueue(3);
+        queue.enqueue(6);
+        queue.enqueue(7);
+        queue.enqueue(89);
+        assertEquals(4, queue.getTotalNumberOfElements());
+    }
+
+    @Test
+    void checkIfQueueIsEmpty(){
+        queue.enqueue(3);
+        queue.enqueue(6);
+        queue.enqueue(7);
+        queue.dequeue();
+        queue.dequeue();
+        queue.dequeue();
+        assertTrue(queue.isEmpty());
     }
 }
