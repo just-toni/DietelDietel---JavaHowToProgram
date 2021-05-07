@@ -1,5 +1,7 @@
 package chapterEight;
 
+import FirstSetOfTddPractice.GasMileage;
+
 import java.util.Arrays;
 
 public class Board {
@@ -17,14 +19,16 @@ public class Board {
         return grid;
     }
 
-    public void visualizeBoard() {
-        GameValue result;
+    public String visualizeBoard() {
+        String result = "";
         for (int row = 0; row < grid.length; row++) {
             for (int column = 0; column < grid[row].length; column++) {
-                result = grid[row][column];
-                System.out.println(result + " ");
+                result += grid[row][column] + " ";
             }
-            System.out.println();
+           result += '\n';
         }
+        return result;
     }
+
+
 }
