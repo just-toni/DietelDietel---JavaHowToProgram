@@ -37,9 +37,46 @@ class TicTacToeTest {
     @Test
     void testThatBoardCanBeVisualized(){
         assertEquals("""
-                p p p
-                p p p
-                p p p
+                EMPTY EMPTY EMPTY 
+                EMPTY EMPTY EMPTY 
+                EMPTY EMPTY EMPTY 
                 """, game.displayBoard());
     }
+
+    @Test
+    void testThatPlayerCanMakeAMove() throws GameOverException {
+        game.makeMove(1);
+        assertEquals(GameValue.X, game.getBoard().getGrid()[0][0]);
+        assertEquals("""
+                X EMPTY EMPTY 
+                EMPTY EMPTY EMPTY  
+                EMPTY EMPTY EMPTY 
+                """, board.visualizeBoard());
+        game.makeMove(5);
+        assertEquals(GameValue.O, game.getBoard().getGrid()[1][1]);
+        assertEquals("""
+                X EMPTY EMPTY 
+                EMPTY O EMPTY 
+                EMPTY EMPTY EMPTY 
+                """, board.visualizeBoard());
+    }
+
+    @Test
+    void testThatPlayerCantMakeTheSameMoveTwice() throws GameOverException {
+        game.makeMove(5);
+        assertEquals(GameValue.X, game.getBoard().getGrid()[1][1]);
+        game.makeMove(3);
+        assertNotEquals(GameValue.X, game.getBoard().getGrid()[0][2]);
+    }
+
+    @Test
+    void testThatPlayerCanOnlyPlayOnEmptySpaces() throws GameOverException {
+        assertEquals(1, game.makeMove(6));
+        assertEquals(-1, game.makeMove(6));
+        assertEquals(1, game.makeMove(8));
+        assertEquals(-1, game.makeMove(8));
+        assertEquals(1, game.makeMove(1));
+        assertEquals(-1, game.makeMove(1));
+    }
+
 }
