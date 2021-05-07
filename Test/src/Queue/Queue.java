@@ -20,12 +20,29 @@ public class Queue {
 
     public int peekLast() {
         for (int i = 0; i < element.length; i++) {
-
+            if(element[i] == 0){
+                return element[i - 1];
+            }
         }
         return 0;
     }
 
-    public int dequeue() {
-        return element[0];
+    public int dequeue() throws QueueUnderflowException{
+        if(isEmpty());// throw new QueueUnderflowException();
+        int valueToReturn = element[0];
+        for (int i = 1; i < element.length; i++) {
+            element[i - 1] = element [i];
+        }
+        return valueToReturn;
+    }
+
+    public int getTotalNumberOfElements() {
+        System.out.println(placeValueHere);
+        return placeValueHere;
+    }
+
+    public boolean isEmpty() {
+        if(getTotalNumberOfElements() == 0) return true;
+        else return false;
     }
 }
