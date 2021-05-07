@@ -17,7 +17,7 @@ public enum GameValue {
                 value = "O";
             }
             case EMPTY -> {
-                value = " ";
+                value = "EMPTY";
             }
         }
         return value;
