@@ -1,5 +1,8 @@
 package Queue;
 
+import com.QueueExceptions.QueueOverflowException;
+import com.QueueExceptions.QueueUnderflowException;
+
 public class Queue {
     private int[] element;
     private int placeValueHere;
@@ -8,7 +11,8 @@ public class Queue {
         element = new int[value];
     }
 
-    public void enqueue(int value) {
+    public void enqueue(int value) throws QueueOverflowException {
+        if (isFull()) throw new QueueOverflowException("Queue overflow");
         element[placeValueHere] = value;
         placeValueHere++;
     }
@@ -27,22 +31,27 @@ public class Queue {
         return 0;
     }
 
-    public int dequeue() throws QueueUnderflowException{
-        if(isEmpty());// throw new QueueUnderflowException();
+    public int dequeue() throws QueueUnderflowException {
+        if(isEmpty()) throw new QueueUnderflowException("Queue is empty");
         int valueToReturn = element[0];
         for (int i = 1; i < element.length; i++) {
             element[i - 1] = element [i];
         }
+        placeValueHere--;
         return valueToReturn;
     }
-
+//
     public int getTotalNumberOfElements() {
-        System.out.println(placeValueHere);
         return placeValueHere;
     }
 
     public boolean isEmpty() {
         if(getTotalNumberOfElements() == 0) return true;
+        else return false;
+    }
+
+    public boolean isFull() {
+        if(element.length == getTotalNumberOfElements()) return true;
         else return false;
     }
 }
