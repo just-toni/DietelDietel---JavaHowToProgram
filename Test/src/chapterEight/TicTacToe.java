@@ -59,4 +59,13 @@ public class TicTacToe {
         }
         return true;
     }
+
+    public boolean gameWon() {
+        GameValue [][] grid = gameBoard.getGrid();
+        for (int row = 0; row < grid.length; row++) {
+//            int row = 0;
+
+        }
+        return false;
+    }
 }
