@@ -6,6 +6,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class QueueTest {
@@ -127,15 +129,27 @@ class QueueTest {
 
     @Test
     void test(){
-        Queue toniQueue = new Queue(5);
+        Queue toniQueue = new Queue(7);
+//        int[] elementArray = new int [7];
         toniQueue.enqueue(4);
         toniQueue.enqueue(3);
-        toniQueue.enqueue(6);
-        toniQueue.enqueue(2);
         toniQueue.dequeue();
+        assertEquals(1, toniQueue.getTotalNumberOfElements());
+        assertEquals(3, toniQueue.peekFirst());
+        assertEquals(3, toniQueue.peekLast());
+//        assertArrayEquals(new int[]{4,0,0,0,0,0,0}, toniQueue.toString());
         toniQueue.enqueue(8);
         toniQueue.enqueue(2);
-        assertEquals(3, toniQueue.peekFirst());
-
+        toniQueue.dequeue();
+        assertEquals(2, toniQueue.getTotalNumberOfElements());
+        toniQueue.enqueue(6);
+        toniQueue.enqueue(2);
+        toniQueue.enqueue(6);
+        assertEquals(8, toniQueue.peekFirst());
+        assertFalse(toniQueue.isFull());
+        assertEquals(5, toniQueue.getTotalNumberOfElements());
+        toniQueue.enqueue(4);
+        toniQueue.enqueue(9);
+        assertEquals(7, toniQueue.getTotalNumberOfElements());
     }
 }
