@@ -79,4 +79,19 @@ class TicTacToeTest {
         assertEquals(-1, game.makeMove(1));
     }
 
+    @Test
+    void testThatGameIsWonWhenPlayerPlaysTheFirstRow() throws GameOverException {
+        game.makeMove(1);
+        assertEquals(GameValue.X, game.getBoard().getGrid()[0][0]);
+        game.makeMove(4);
+        assertEquals(GameValue.O, game.getBoard().getGrid()[0][1]);
+        game.makeMove(2);
+        assertEquals(GameValue.X, game.getBoard().getGrid()[0][2]);
+        game.makeMove(8);
+        assertEquals(GameValue.O, game.getBoard().getGrid()[2][1]);
+        game.makeMove(3);
+        assertEquals(GameValue.X, game.getBoard().getGrid()[0][0]);
+        assertTrue(game.gameWon());
+    }
+
 }
