@@ -3,6 +3,9 @@ package Queue;
 import com.QueueExceptions.QueueOverflowException;
 import com.QueueExceptions.QueueUnderflowException;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 public class Queue {
     private int[] element;
     private int placeValueHere;
@@ -33,11 +36,13 @@ public class Queue {
 
     public int dequeue() throws QueueUnderflowException {
         if(isEmpty()) throw new QueueUnderflowException("Queue is empty");
-        int valueToReturn = element[0];
-        for (int i = 1; i < element.length; i++) {
-            element[i - 1] = element [i];
-        }
+        int valueToReturn = element[placeValueHere - 1];
         placeValueHere--;
+        if(!isFull()){
+            for (int i = 1; i < element.length - 1; i++) {
+                element[i - 1] = element [i];
+            }
+        }
         return valueToReturn;
     }
 //
@@ -53,5 +58,9 @@ public class Queue {
     public boolean isFull() {
         if(element.length == getTotalNumberOfElements()) return true;
         else return false;
+    }
+
+    public String toString(){
+        return Arrays.toString(element);
     }
 }
