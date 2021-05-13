@@ -34,4 +34,14 @@ public class HourlyEmployee extends Employee {
         this.hours = hours;
     }
 
+    public double calculateEarnings(){
+        return getHours() * getWages();
+    }
+
+    @Override
+    public String toString(){
+        return super.toString() + "\n" + "Hours: " + getHours() + "\n"
+                + "Wages: " + getWages();
+    }
+
 }
