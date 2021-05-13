@@ -1,9 +1,14 @@
 package chapterEight;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 public class TicTacToe {
     private final Board gameBoard;
     private boolean lastPositionPlayedIsX;
     private final int positionToPlay;
+    private boolean gameWon;
 
     public TicTacToe(Board gameBoard) {
         this.gameBoard = gameBoard;
@@ -61,11 +66,62 @@ public class TicTacToe {
     }
 
     public boolean gameWon() {
+        checkHorizontalRow();
+        checkLeftDiagonal();
+        checkRightDiagonal();
+        return gameWon;
+    }
+
+    private void checkRightDiagonal() {
+        GameValue [][] grid = gameBoard.getGrid();
+        for (int i = 0; i < grid.length; i++) {
+            int row = 2;
+            int column = 0;
+            Set<GameValue> results = new HashSet<>();
+            while(row >= 0 && column <= 2){
+                results.add(grid[row][column]);
+                row--;
+                column++;
+            }
+            if (!results.contains(GameValue.EMPTY)){
+                if(results.size() == 1){
+                    gameWon = true;
+                    return;
+                }
+            }
+        }
+    }
+
+    private void checkLeftDiagonal() {
+        GameValue [][] grid = gameBoard.getGrid();
+        for (int i = 0; i < grid.length; i++) {
+            int row = 0;
+            int column = 0;
+            Set<GameValue> results = new HashSet<>();
+            while(row < 3 && column < 3){
+                results.add(grid[row][column]);
+                row++;
+                column++;
+            }
+            if (!results.contains(GameValue.EMPTY)){
+                if(results.size() == 1){
+                    gameWon = true;
+                    return;
+                }
+            }
+        }
+    }
+
+    private void checkHorizontalRow() {
         GameValue [][] grid = gameBoard.getGrid();
         for (int row = 0; row < grid.length; row++) {
-//            int row = 0;
-
+            Set<GameValue> values = new HashSet<>(Arrays.asList(GameValue.values()));
+            if(!values.contains(GameValue.EMPTY)){
+                if(values.size() == 1){
+                    this.gameWon = true;
+                    return;
+                }
+            }
         }
-        return false;
     }
 }
