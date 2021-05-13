@@ -13,7 +13,7 @@ public class SeperatingDigitsMain {
         int input2 = reader.nextInt();
         SeparatingDigits.setSecondInput(input2);
 
-        System.out.println("The quotient is: " + SeparatingDigits.calculateQuotient(SeparatingDigits.getFirstInput(), SeparatingDigits.getFirstInput()));
+        System.out.println("The quotient is: " + SeparatingDigits.calculateQuotient(SeparatingDigits.getFirstInput(), SeparatingDigits.getSecondInput()));
         System.out.println("The remainder is " + SeparatingDigits.calculateReminder(SeparatingDigits.getFirstInput(),SeparatingDigits.getSecondInput()));
         System.out.println(SeparatingDigits.displayDigits(SeparatingDigits.getFirstInput()));
         System.out.println(SeparatingDigits.displayDigits(SeparatingDigits.getSecondInput()));
