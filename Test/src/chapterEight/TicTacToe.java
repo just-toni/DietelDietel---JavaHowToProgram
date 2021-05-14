@@ -46,7 +46,6 @@ public class TicTacToe {
             }
             return 1;
         }
-//        throw new IllegalArgumentException("Position " + positionToPlay + " has already been played");
         return -1;
     }
 
