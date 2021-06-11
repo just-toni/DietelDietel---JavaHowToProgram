@@ -13,4 +13,17 @@ public class Diary {
     public int getTotalNumberOfEntry() {
         return entries.size();
     }
+
+    public void deleteEntry(int entryNumber) {
+//        Entry entry = findEntryBy(entryNumber);
+//        entries.remove(entry);
+    }
+
+//    private Entry findEntryBy(int entryNumber) {
+//        for (int i = 0; i < entries.size(); i++) {
+//            if(entries.getEntryNumber().equals(entryNumber)){
+//                return en
+//            }
+//        }
+//    }
 }
