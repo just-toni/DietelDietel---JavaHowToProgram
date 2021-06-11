@@ -1,5 +1,8 @@
 package Card;
 
+import CardExceptions.StackOverFlowException;
+import CardExceptions.StackUnderFlowException;
+
 public class DeckOfCards {
     private Card[] cards;
     private int insertHere;
@@ -13,6 +16,7 @@ public class DeckOfCards {
     }
 
     public void push(Card card) {
+        if(isFull()) throw new StackOverFlowException("Deck is full!!!");
         cards[insertHere] = card;
         insertHere++;
     }
@@ -22,12 +26,22 @@ public class DeckOfCards {
     }
 
     public Card peek() {
-        return cards[--insertHere];
+        if(isEmpty()) throw new StackUnderFlowException("Deck is empty!!!");
+        return cards[insertHere-1];
     }
 
     public Card pop() {
+        if(isEmpty()) throw new StackUnderFlowException("Deck is empty!!!");
         Card cardToReturn = cards[insertHere-1];
         insertHere--;
         return cardToReturn;
+    }
+
+    public boolean isEmpty(){
+        return getTotalNumberOfCardsInDeck() == 0;
+    }
+
+    public boolean isFull(){
+        return getTotalNumberOfCardsInDeck() == cards.length;
     }
 }

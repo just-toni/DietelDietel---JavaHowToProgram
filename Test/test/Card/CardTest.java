@@ -1,7 +1,5 @@
 package Card;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static Card.Faces.*;
@@ -26,5 +24,18 @@ class CardTest {
     void testThatACardWithBothSuitsAndFacesCanBeCreated(){
         Card card = new Card(KING, SPADES);
         assertEquals("KING OF SPADES", card.toString());
+    }
+
+    @Test
+    void testSameSuitValueEquals(){
+        Card aceOfClubs = new Card(ACE, CLUB);
+        Card threeOfClubs = new Card(THREE, CLUB);
+        assertEquals(aceOfClubs, threeOfClubs);
+        Card aceOfHearts = new Card(ACE, HEARTS);
+        Card threeOfHearts = new Card(THREE, HEARTS);
+        assertEquals(aceOfHearts, threeOfHearts);
+        Card kingOfDiamonds = new Card(KING, DIAMOND);
+        DeckOfCards deckOfCards = new DeckOfCards(3);
+        assertNotEquals(kingOfDiamonds, deckOfCards);
     }
 }

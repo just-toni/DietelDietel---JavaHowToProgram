@@ -1,5 +1,7 @@
 package Stack;
 
+import java.util.Objects;
+
 public class Card {
 
     private final String face;
@@ -14,4 +16,14 @@ public class Card {
     public String toString() {
         return face + " of " + suits;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(!this.getClass().equals(obj.getClass())){
+            return false;
+        }
+        Card comparisonCard = (Card) obj;
+        return this.face ==  (comparisonCard.face) || this.suits == (comparisonCard.suits);
+    }
+
 }
