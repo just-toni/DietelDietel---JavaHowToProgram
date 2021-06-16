@@ -4,26 +4,53 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Diary {
-    List<String> entries = new ArrayList<>();
-    public void addEntry(String entryBody) {
-//        Entry entry = new Entry(entryBody);
-        entries.add(entryBody);
+
+    private List<Entry> entries = new ArrayList<>();
+
+    public void newEntry(Entry entry) {
+        entries.add(entry);
     }
 
-    public int getTotalNumberOfEntry() {
+    public int getTotalNumberOfEntries() {
         return entries.size();
     }
 
-    public void deleteEntry(int entryNumber) {
-//        Entry entry = findEntryBy(entryNumber);
-//        entries.remove(entry);
+    public void updateEntry(int entryId, String message) {
+        for (int i = 0; i < entries.size(); i++) {
+            if(entries.get(i).getEntryId() == entryId){
+                entries.get(i).updateMessage(message);
+                break;
+            }
+        }
     }
 
-//    private Entry findEntryBy(int entryNumber) {
-//        for (int i = 0; i < entries.size(); i++) {
-//            if(entries.getEntryNumber().equals(entryNumber)){
-//                return en
-//            }
-//        }
-//    }
+    public String getEntryMessage(int entryId) {
+        String result = "";
+        for (int i = 0; i < entries.size(); i++) {
+            if(entries.get(i).getEntryId() == entryId){
+                result = entries.get(i).getMessage();
+                break;
+            }
+        }
+        return result;
+    }
+
+    public void deleteEntry(int entryId) {
+        for (int i = 0; i < entries.size(); i++) {
+            if(entries.get(i).getEntryId() == entryId){
+                entries.remove(i);
+                break;
+            }
+        }
+    }
+
+
+    public String viewAllEntries() {
+        String allEntries = "";
+        for (int i = 0; i < entries.size(); i++) {
+            allEntries += entries.get(i).toString() + "\n\n";
+        }
+        return  allEntries;
+
+    }
 }

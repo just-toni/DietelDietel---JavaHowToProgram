@@ -1,32 +1,32 @@
 package ourDiary;
 
 public class User {
+    private String username;
+    private Diary diary;
 
-    private final String userName;
-    private final Diary diary;
-
-    public User(String userName, Diary userDiary) {
-        diary = userDiary;
-        this.userName = userName;
+    public User(String username, Diary diaryName) {
+        this.username = username;
+        this.diary = diaryName;
     }
 
-    public Diary getDiary(){
+    public int getTotalNumberOfEntries() {
+        return diary.getTotalNumberOfEntries();
+    }
+
+    public Diary getDiary() {
         return diary;
     }
 
-    public void createEntry(String entryBody) {
-        diary.addEntry(entryBody);
+    public void write(Entry entry) {
+        diary.newEntry(entry);
     }
 
-    public void updateEntry(String entryBody) {
-        diary.addEntry(entryBody);
+    public void updateEntry(int entryId, String message) {
+        diary.updateEntry(entryId, message);
     }
 
-    public int getTotalEntries() {
-        return diary.getTotalNumberOfEntry();
-    }
 
-    public void delete(int entryNumber) {
-        diary.deleteEntry(entryNumber);
+    public void delete(int entryId) {
+        diary.deleteEntry(entryId);
     }
 }
