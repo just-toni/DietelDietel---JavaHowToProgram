@@ -8,6 +8,7 @@ public class PiCalculator {
 
         int denominator = 1;
         double piValue = 0.0;
+        double piAnswer = 0.0;
 
         for(int i = 1; i <= limit; i++) {
             if (i % 2 == 1) {
@@ -15,11 +16,12 @@ public class PiCalculator {
             } else {
                 piValue -= 4.0 / denominator;
             }
-//            if((int)(piValue * 100000) == 314159){
-//                value = i;
-//            }
+            if((int)(piValue * 100000) == 314159){
+                piAnswer = i;
+            }
             denominator += 2;
             System.out.println(i + "\t\t\t" + piValue);
         }
+        System.out.println(piAnswer);
     }
 }

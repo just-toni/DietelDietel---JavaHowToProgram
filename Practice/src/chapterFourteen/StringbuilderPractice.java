@@ -4,20 +4,29 @@ public class StringbuilderPractice {
 
     public static void main(String[] args) {
 
-        Object objectRef = "hello";
-        String string = "goodbye";
-        char[] charArray = {'a', 'b', 'c', 'd', 'e', 'f'};
-        boolean booleanValue = true;
-        char characterValue = 'K';
-        int integerValue = 7;
-        long longValue = 10000000;
-        float floatValue = 2.5f;
-        double doubleValue = 33.333;
-        StringBuilder buffers = new StringBuilder();
+//        StringBuilder buffer = new StringBuilder("My name is Toni");
+//        System.out.printf("buffer = %s%n", buffer.toString());
+//        System.out.printf("Character at 8: %s%n", buffer.charAt(8));
+//        char[] charArray = new char[buffer.length()];
+//        buffer.getChars(3, buffer.length(), charArray, 0);
+//        System.out.println("The characters in char array are: ");
+//        for(char character : charArray)
+//            System.out.print(character);
 
-        buffers.insert(0, objectRef);
-        buffers.insert(3, "  ");
-        System.out.printf("Buffer after inserts: %n%s%n", buffers.toString());
+//        Object objectRef = "hello";
+//        String string = "goodbye";
+//        char[] charArray = {'a', 'b', 'c', 'd', 'e', 'f'};
+//        boolean booleanValue = true;
+//        char characterValue = 'K';
+//        int integerValue = 7;
+//        long longValue = 10000000;
+//        float floatValue = 2.5f;
+//        double doubleValue = 33.333;
+//        StringBuilder buffers = new StringBuilder();
+//
+//        buffers.insert(0, objectRef);
+//        buffers.insert(3, "  ");
+//        System.out.printf("Buffer after inserts: %n%s%n", buffers.toString());
 
 //        String string1 = "hello";
 //        String string2 = "BC";
