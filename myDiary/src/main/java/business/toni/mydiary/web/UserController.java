@@ -2,21 +2,29 @@ package business.toni.mydiary.web;
 
 import business.toni.mydiary.models.User;
 import business.toni.mydiary.services.UserService;
+import lombok.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("/user/add/{userName}/{password}")
-    public User registerUser(@PathVariable("userName") String username, @PathVariable("password") String password ){
+    @PostMapping("/user/add/")
+    public User registerUser(@RequestBody UserDTO userDTO){
 
-       return userService.saveUser(username, password);
+       return userService.saveUser(userDTO.getUsername(), userDTO.getPassword());
 
+    }
+
+    @ToString
+    @Getter
+    @Setter
+    @AllArgsConstructor
+    @NoArgsConstructor
+    private static class UserDTO {
+        private String username;
+        private String password;
     }
 }
