@@ -134,6 +134,7 @@ class QueueTest {
         toniQueue.enqueue(4);
         toniQueue.enqueue(3);
         toniQueue.dequeue();
+//        System.out.println(toniQueue.dequeue());
         assertEquals(1, toniQueue.getTotalNumberOfElements());
         assertEquals(3, toniQueue.peekFirst());
         assertEquals(3, toniQueue.peekLast());
@@ -151,5 +152,19 @@ class QueueTest {
         toniQueue.enqueue(4);
         toniQueue.enqueue(9);
         assertEquals(7, toniQueue.getTotalNumberOfElements());
+    }
+
+    @Test
+    void test2(){
+        queue.enqueue(1);
+        queue.enqueue(0);
+        queue.enqueue(1);
+        queue.enqueue(0);
+        queue.enqueue(1);
+
+        System.out.println(queue.dequeue());
+        System.out.println(queue.dequeue());
+        System.out.println(queue.peekFirst());
+        System.out.println(queue.peekLast());
     }
 }
