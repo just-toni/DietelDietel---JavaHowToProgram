@@ -18,11 +18,7 @@ public class UserController {
 
     }
 
-    @ToString
-    @Getter
-    @Setter
-    @AllArgsConstructor
-    @NoArgsConstructor
+    @Data
     private static class UserDTO {
         private String username;
         private String password;
