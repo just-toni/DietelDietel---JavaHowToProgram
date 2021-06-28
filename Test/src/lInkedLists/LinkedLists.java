@@ -1,2 +1,4 @@
-package lInkedLists;public class LinkedLists {
+package lInkedLists;
+
+public class LinkedLists {
 }
