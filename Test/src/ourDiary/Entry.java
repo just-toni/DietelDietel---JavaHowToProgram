@@ -31,7 +31,6 @@ public class Entry {
         return timeOfEntry;
     }
 
-
     @Override
     public String toString() {
         return "Entry {" + '\n' + "Entry ID: " + entryId + '\n' +

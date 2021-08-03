@@ -16,4 +16,5 @@ public class Diary {
     private String diaryId;
     private String title;
     private List<String> entries = new ArrayList<>();
+    private User userId;
 }

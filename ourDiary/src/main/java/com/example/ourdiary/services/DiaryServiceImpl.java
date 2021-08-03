@@ -1,6 +1,7 @@
 package com.example.ourdiary.services;
 
 import com.example.ourdiary.models.Diary;
+import com.example.ourdiary.models.User;
 import com.example.ourdiary.repository.DiaryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,9 +15,8 @@ public class DiaryServiceImpl implements DiaryService{
         return diaryRepository.save(diary);
     }
     
-    public void delete(String ttile) {
-        diaryRepository.deleteById(title);
+    public void delete(String title) {
+        diaryRepository.deleteByTitle(title);
     }
-
 
 }

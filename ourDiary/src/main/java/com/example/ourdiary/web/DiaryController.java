@@ -3,7 +3,6 @@ package com.example.ourdiary.web;
 import com.example.ourdiary.models.Diary;
 import com.example.ourdiary.services.DiaryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -18,9 +17,9 @@ public class DiaryController {
         return diaryService.save(diary);
     }
 
-    @DeleteMapping("/diary/delete")
-    @ResponseStatus(HttpStatus.OK)
-    public void deleteDiary(@RequestParam String title){
+    @DeleteMapping("/diary/delete/{title}")
+    public void deleteDiary(@RequestParam("title") String title){
         diaryService.delete(title);
     }
+
 }
