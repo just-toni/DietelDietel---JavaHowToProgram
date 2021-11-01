@@ -1,18 +1,21 @@
 package chapterFourteen;
 
+import java.util.Arrays;
+
 public class StringTokenizationAndComparison {
 
-
-    public void tokenizeSentence(String sentence) {
+    public String tokenizeSentence(String sentence) {
+        StringBuilder builder = new StringBuilder();
         String [] token = sentence.split(" ");
-        for(String string : token){
-            if(string.startsWith("b")){
-                System.out.println(string);
+        System.out.println(Arrays.deepToString(token));
+        for(String string : token) {
+            if (string.toLowerCase().startsWith("b")) {
+                builder.append(string).append(" ");
+            }
+            if(string.endsWith("ED")){
+                builder.append(string).append(" ");
             }
         }
-    }
-
-    public String getTokenizedSentence() {
-        return
+        return builder.toString().trim();
     }
 }
