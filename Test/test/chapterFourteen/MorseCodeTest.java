@@ -10,6 +10,12 @@ class MorseCodeTest {
 
     @Test
     void testThatCovertsMorseCodeToEnglish(){
+        String morse = "- .- ... .... .-";
+        assertEquals("t a s h a   ", morseCode.toEnglish(morse));
+    }
+
+    @Test
+    void testThatEnglishConvertsToMorseCode(){
         String phrase = "tasha";
         assertEquals("- .- ... .... .-", morseCode.toMorseCode(phrase));
     }

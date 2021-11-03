@@ -104,4 +104,22 @@ public class MorseCode {
         }
         return stringBuilder.toString();
     }
+
+    public String toEnglish(String morse){
+        StringBuilder stringBuilder = new StringBuilder();
+        char[] chars = morse.toCharArray();
+        for (int i = 0; i < chars.length; i++) {
+//            for (int j = 0; j < chars[i]; j++) {
+//                stringBuilder.append(chars[j]).append(" ");
+//                if (chars[i] == ' ') {
+//                    stringBuilder.append("   ");
+//                }
+//            }
+            stringBuilder.append(decodeChar(morse.toUpperCase(chars[i])));
+            if (i != chars.length - 1) {
+                stringBuilder.append(" ");
+            }
+        }
+        return stringBuilder.toString();
+    }
 }
