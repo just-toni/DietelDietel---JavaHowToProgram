@@ -15,7 +15,7 @@ public class TextAnalysis {
                 }
             }
 //            System.out.printf("%s%13d%n", (char)i, occurrences);
-            stringBuilder.append((char)i).append(occurrences);
+            stringBuilder.append((char)i).append("            ").append(occurrences).append("\n");
         }
         return stringBuilder.toString();
     }
