@@ -115,7 +115,7 @@ public class MorseCode {
 //                    stringBuilder.append("   ");
 //                }
 //            }
-            stringBuilder.append(decodeChar(morse.toUpperCase(chars[i])));
+//            stringBuilder.append(decodeChar(morse.toUpperCase(chars[i])));
             if (i != chars.length - 1) {
                 stringBuilder.append(" ");
             }
