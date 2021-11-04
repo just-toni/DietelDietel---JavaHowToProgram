@@ -20,8 +20,25 @@ public class TextAnalysis {
         return stringBuilder.toString();
     }
 
+    public static String findWordLengthInThisText(String text){
+        StringBuilder stringBuilder = new StringBuilder();
+        char[] chars = text.toCharArray();
+        String[] splitText = text.split(" ");
+        for (int i = 0; i < splitText.length; i++) {
+            int occurrences = 0;
+            for (int j = 0; j < splitText[i].length(); j++) {
+                if(splitText[i].length() == splitText[j].length()){
+                    ++occurrences;
+                }
+            }
+            stringBuilder.append(i).append("             ").append(occurrences).append("\n");
+        }
+        return stringBuilder.toString();
+    }
+
     public static void main(String[] args) {
         String text = "To be, or not to be: that is the question";
         findNumberOfOccurrencesOfEachAlphabetInThisText(text);
+        System.out.println(findWordLengthInThisText("Whether 'tis nobler in the mind to suffer"));
     }
 }
