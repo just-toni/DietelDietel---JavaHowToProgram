@@ -15,7 +15,7 @@ public class TransactionRecord {
     }
 
     public void setAccountNumber(int accountNumber) {
-        this.accountNumber = accountNumber;
+        this.accountNumber = accountNumber + 200;
     }
 
     public double getAmount() {
