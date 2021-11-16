@@ -6,7 +6,7 @@ import java.util.FormatterClosedException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-public class CreateFiles {
+public class CreateMasterFile {
 
     private static Formatter output;
 
